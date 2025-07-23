@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ILYA Attorneys</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-MZg9r7XD2Y2+e3+IRcRzCvLVsDxNS3QJdQ7kTb6sl9KfUGY5x7u1STWzcfQo7Jbt+fzL5tT+f4tM3+PpXz0N6g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+    }
+
+    /* Menambahkan offset agar judul tidak tertutup navbar */
+    section[id]::before {
+        content: "";
+        display: block;
+        height: 120px; /* Sebelumnya 80px */
+        margin-top: -120px;
+        visibility: hidden;
+    }
+    </style>
+  </head>
+
+  <body class="bg-white text-gray-900">
+
+    <!-- Navbar -->
+    <header class="sticky top-0 bg-black/80 backdrop-blur-md z-50">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <a href="#">
+          <img src="logo.png" alt="ILYA Attorneys Logo" class="h-16 w-auto" />
+        </a>
+        <nav class="space-x-6 text-white font-medium">
+          <a href="#hero" class="hover:text-slate-300 transition">Home</a>
+          <a href="#about" class="hover:text-slate-300 transition">About</a>
+          <a href="#service" class="hover:text-slate-300 transition">Service</a>
+          <a href="#blog" class="hover:text-slate-300 transition">Blog</a>
+          <a href="#contact" class="hover:text-slate-300 transition">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="bg-cover bg-center text-white h-[700px] flex items-center"
+      style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bg.png');">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="mt-4">
+          <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Membela Keadilan,<br />Menjunjung Kebenaran.
+          </h1>
+          <p class="text-lg md:text-xl mb-8 font-medium">
+            Kantor Hukum Profesional & Terpercaya Sejak 2020
+          </p>
+          <div class="flex space-x-4">
+            <a href="#contact"
+              class="bg-slate-900 text-white font-semibold px-6 py-3 rounded-lg hover:bg-slate-600 transition">
+              Konsultasi Sekarang
+            </a>
+            <a href="#service"
+              class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition">
+              Pelajari Layanan Kami
+            </a>
+          </div>
+        </div>
+
+        <div class="mt-8">
+          <div class="w-16 h-1 bg-slate-900 mb-8"></div>
+          <p class="italic text-white text-lg max-w-xl">
+            “Keadilan bukan hanya hukum, tetapi prinsip yang membentuk peradaban. Kami hadir untuk memperjuangkan hak
+            Anda dengan integritas dan profesionalisme.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="pt-[100px] -mt-[100px] py-20 px-4 bg-white">
+      <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">About Us</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div class="space-y-6 text-slate-700">
+          <div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Kami Hadir Untuk Membela Hak dan Keadilan Anda</h3>
+            <p>
+              ILYA Attorneys adalah firma hukum independen yang berdedikasi dalam memberikan solusi hukum yang berkualitas tinggi, adil, dan terpercaya.
+            </p>
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-900 mb-1">Misi Kami</h4>
+            <ul class="list-disc list-inside space-y-1">
+              <li>Memberikan layanan hukum yang berkualitas tinggi dan berorientasi pada hasil.</li>
+              <li>Menjalin hubungan jangka panjang dengan klien melalui pelayanan yang jujur dan terpercaya.</li>
+              <li>Menjadi mitra strategis dalam penyelesaian masalah hukum klien.</li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="font-semibold text-slate-900 mb-1">Visi Kami</h4>
+            <p>
+              Menjadi firma hukum terpercaya di Indonesia yang menjunjung tinggi keadilan, integritas dan profesionalitas.
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-center">
+          <img src="pengacara.png" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-xs object-cover" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Mengapa Memilih Kami -->
+    <section class="bg-slate-900 text-white py-40 px-4 mb-12">
+      <h2 class="text-3xl font-bold text-center mb-12">Mengapa Memilih Kami?</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <img src="timbangan.png" alt="Pengalaman" class="mx-auto mb-4 w-16 h-16 object-contain">
+          <h3 class="font-semibold text-lg mb-2">Pengalaman & Kredibilitas</h3>
+          <p class="text-sm">Tim profesional dengan pengalaman luas dalam berbagai bidang hukum.</p>
+        </div>
+        <div>
+          <img src="user.png" alt="Profesional" class="mx-auto mb-4 w-16 h-16 object-contain">
+          <h3 class="font-semibold text-lg mb-2">Tim Profesional</h3>
+          <p class="text-sm">Pengacara berdedikasi yang memahami kebutuhan hukum Anda.</p>
+        </div>
+        <div>
+          <img src="gembok.png" alt="Kerahasiaan" class="mx-auto mb-4 w-16 h-16 object-contain">
+          <h3 class="font-semibold text-lg mb-2">Kerahasiaan Dijamin</h3>
+          <p class="text-sm">Kerja dengan standar etika dan kerahasiaan tinggi.</p>
+        </div>
+        <div>
+          <img src="jam.png" alt="Respon Cepat" class="mx-auto mb-4 w-16 h-16 object-contain">
+          <h3 class="font-semibold text-lg mb-2">Respon Cepat</h3>
+          <p class="text-sm">Pelayanan cepat dan tanggap untuk setiap kebutuhan hukum Anda.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section id="service" class="pt-[100px] -mt-[100px] py-20 px-4 bg-gray-50">
+      <h2 class="text-3xl font-bold text-center text-slate-900 mb-10">Service</h2>
+      <div class="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto">
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Hukum Perdata</h3>
+          <p class="text-slate-600">Sengketa, wanprestasi, perdata umum.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Hukum Pidana</h3>
+          <p class="text-slate-600">Pendampingan dalam proses penyidikan dan persidangan.</p>
+        </div>
+        <div class="bg-white p-6 rounded-xl shadow">
+          <h3 class="text-xl font-semibold text-slate-900 mb-2">Hukum Keluarga</h3>
+          <p class="text-slate-600">Perceraian, hak asuh, warisan, dan lainnya.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog -->
+    <section id="blog" class="pt-[100px] -mt-[100px] py-40 px-4">
+      <h2 class="text-3xl font-bold text-center text-slate-900 mt-10 mb-6">Blog</h2>
+      <div class="grid gap-8 md:grid-cols-3 max-w-7xl mx-auto">
+        <div class="bg-gray-100 p-6 rounded-xl shadow text-left">
+          <img src="panduan.png" alt="Panduan Hukum Praktis" class="w-full h-40 object-cover rounded mb-4">
+          <h3 class="text-xl font-semibold text-slate-900 mb-1">Panduan Hukum Praktis</h3>
+          <p class="text-sm text-slate-600 mb-3">20 April 2025</p>
+          <a href="#" class="text-slate-900 font-semibold underline">Baca Selengkapnya</a>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-xl shadow text-left">
+          <img src="tips.png" alt="Tips Hukum Sehari–hari" class="w-full h-40 object-cover rounded mb-4">
+          <h3 class="text-xl font-semibold text-slate-900 mb-1">Tips Hukum Sehari–hari</h3>
+          <p class="text-sm text-slate-600 mb-3">20 April 2025</p>
+          <a href="#" class="text-slate-900 font-semibold underline">Baca Selengkapnya</a>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-xl shadow text-left">
+          <img src="analisis.png" alt="Analisis Kasus Aktual" class="w-full h-40 object-cover rounded mb-4">
+          <h3 class="text-xl font-semibold text-slate-900 mb-1">Analisis Kasus Aktual (Legal Insight)</h3>
+          <p class="text-sm text-slate-600 mb-3">20 April 2025</p>
+          <a href="#" class="text-slate-900 font-semibold underline">Baca Selengkapnya</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="pt-[100px] -mt-[100px] bg-slate-900 text-white py-12 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-10 md:space-y-0">
+        <div>
+          <h3 class="text-xl font-bold mb-2">ILYA Attorneys</h3>
+          <p class="text-sm leading-relaxed max-w-sm">
+            Kantor Hukum Profesional & Terpercaya.<br />
+            Menjunjung tinggi integritas, keadilan, dan kerahasiaan klien.
+          </p>
+        </div>
+        <div class="flex flex-col items-center md:items-end space-y-2">
+          <div class="flex space-x-2">
+            <a href="#"><img src="yt.png" alt="YouTube" class="w-8 h-8"></a>
+            <a href="#"><img src="ig.png" alt="Instagram" class="w-8 h-8"></a>
+            <a href="#"><img src="fb.png" alt="Facebook" class="w-8 h-8"></a>
+            <a href="#"><img src="wa.png" alt="WhatsApp" class="w-8 h-8"></a>
+          </div>
+          <p class="text-sm text-right">
+            Dibuat Oleh Muhammad Ilya Hamzah<br />
+            Menggunakan Figma@2025
+          </p>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+</html>
