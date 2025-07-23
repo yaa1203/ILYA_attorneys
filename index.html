@@ -8,6 +8,10 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.9/typicons.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link
       rel="stylesheet"
@@ -77,17 +81,212 @@
         transition: 0.3s;
     }
 
+    /* Contact Menu Styles */
+    .contact-menu {
+        position: fixed;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 40;
+        transition: all 0.3s ease;
+    }
+
+    .contact-menu-toggle {
+        background: linear-gradient(135deg, #1e293b, #334155);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        overflow: hidden;
+    }
+
+    .contact-menu-toggle:hover {
+        transform: scale(1.1);
+        border-color: #64748b;
+    }
+
+    .contact-menu-toggle img {
+        width: 28px;
+        height: 28px;
+        object-fit: contain;
+        border-radius: 50%;
+    }
+
+    .contact-menu-items {
+        position: absolute;
+        left: 60px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        padding: 15px;
+        min-width: 250px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid #e2e8f0;
+    }
+
+    .contact-menu.active .contact-menu-items {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(-50%) translateX(10px);
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        text-decoration: none;
+        color: #334155;
+        margin-bottom: 8px;
+    }
+
+    .contact-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .contact-item:hover {
+        background: #f1f5f9;
+        transform: translateX(5px);
+    }
+
+    .contact-icon {
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 16px;
+    }
+
+    /* Floating WhatsApp */
+    .floating-whatsapp {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 50;
+        background: #25D366;
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+    .floating-whatsapp:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+
+    @keyframes pulse {
+        0% {
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+        50% {
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0.1);
+        }
+        100% {
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+        }
+    }
+
     /* Responsive text adjustments */
     @media (max-width: 640px) {
         section[id]::before {
             height: 80px;
             margin-top: -80px;
         }
+        
+        .contact-menu {
+            left: 10px;
+        }
+        
+        .contact-menu-items {
+            min-width: 220px;
+            left: 50px;
+        }
+        
+        .floating-whatsapp {
+            width: 50px;
+            height: 50px;
+            bottom: 15px;
+            right: 15px;
+        }
     }
     </style>
   </head>
 
   <body class="bg-white text-gray-900">
+
+    <!-- Contact Menu -->
+    <div class="contact-menu" id="contact-menu">
+      <div class="contact-menu-toggle" id="contact-toggle">
+        <i class="ri-global-line text-3xl"></i>
+      </div>
+      <div class="contact-menu-items" id="contact-items">
+        <a href="tel:+6281234567890" class="contact-item">
+          <div class="contact-icon" style="background: #10b981;">
+            <span class="typcn typcn-phone"></span> 
+          </div>
+          <div>
+            <div class="font-semibold text-sm">Telepon</div>
+            <div class="text-xs text-gray-600">+62 812-1139-1835</div>
+          </div>
+        </a>
+        <a href="mailto:info@ilyaattorneys.com" class="contact-item">
+          <div class="contact-icon" style="background: #3b82f6;">
+            <i class="ri-mail-line"></i>
+          </div>
+          <div>
+            <div class="font-semibold text-sm">Email</div>
+            <div class="text-xs text-gray-600">ilyahamzah.wan@gmail.com</div>
+          </div>
+        </a>
+        <a href="https://wa.me/6281211391835" target="_blank" class="contact-item">
+          <div class="contact-icon" style="background: #25D366;">
+            <i class="ri-whatsapp-line"></i>
+          </div>
+          <div>
+            <div class="font-semibold text-sm">WhatsApp</div>
+            <div class="text-xs text-gray-600">Chat dengan kami</div>
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon" style="background: #f59e0b;">
+            <i class="ri-signpost-line"></i>
+          </div>
+          <div>
+            <div class="font-semibold text-sm">Alamat</div>
+            <div class="text-xs text-gray-600">Bogor, Indonesia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/6281234567890?text=Halo,%20saya%20ingin%20konsultasi%20hukum" target="_blank" class="floating-whatsapp">
+      <i class="ri-whatsapp-line text-4xl"></i>
+    </a>
 
     <!-- Navbar -->
     <header class="sticky top-0 bg-black/80 backdrop-blur-md z-50">
@@ -275,11 +474,11 @@
           </p>
         </div>
         <div class="flex flex-col items-start md:items-end space-y-2 w-full md:w-auto">
-          <div class="flex space-x-2">
-            <a href="#"><img src="yt.png" alt="YouTube" class="w-6 h-6 sm:w-8 sm:h-8"></a>
-            <a href="#"><img src="ig.png" alt="Instagram" class="w-6 h-6 sm:w-8 sm:h-8"></a>
-            <a href="#"><img src="fb.png" alt="Facebook" class="w-6 h-6 sm:w-8 sm:h-8"></a>
-            <a href="#"><img src="wa.png" alt="WhatsApp" class="w-6 h-6 sm:w-8 sm:h-8"></a>
+          <div class="flex space-x-3">
+            <a href="#"><i class="ri-youtube-line text-4xl"></i></a>
+            <a href="#"><i class="ri-instagram-line text-4xl"></i></a>
+            <a href="#"><i class="ri-facebook-line text-4xl"></i></a>
+            <a href="#"><i class="ri-whatsapp-line text-4xl"></i></a>
           </div>
           <p class="text-xs sm:text-sm text-left md:text-right">
             Dibuat Oleh Muhammad Ilya Hamzah<br />
@@ -328,6 +527,28 @@
         if (e.key === 'Escape') {
           closeMenuFunc();
         }
+      });
+
+      // Contact menu functionality
+      const contactMenu = document.getElementById('contact-menu');
+      const contactToggle = document.getElementById('contact-toggle');
+      const contactItems = document.getElementById('contact-items');
+
+      contactToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        contactMenu.classList.toggle('active');
+      });
+
+      // Close contact menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!contactMenu.contains(e.target)) {
+          contactMenu.classList.remove('active');
+        }
+      });
+
+      // Prevent contact menu from closing when clicking inside
+      contactItems.addEventListener('click', (e) => {
+        e.stopPropagation();
       });
     </script>
 
