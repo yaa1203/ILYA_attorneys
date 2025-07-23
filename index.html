@@ -24,21 +24,66 @@
     />
 
     <style>
-      html {
+    html {
         scroll-behavior: smooth;
-      }
+    }
 
-      body {
+    body {
         font-family: 'Inter', sans-serif;
-      }
+    }
 
-      section[id]::before {
+    /* Menambahkan offset agar judul tidak tertutup navbar */
+    section[id]::before {
         content: "";
         display: block;
-        height: 120px;
+        height: 120px; /* Sebelumnya 80px */
         margin-top: -120px;
         visibility: hidden;
-      }
+    }
+
+    /* Mobile menu styles */
+    #mobile-menu {
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    #mobile-menu.active {
+        transform: translateX(0);
+    }
+
+    /* Hamburger animation */
+    .hamburger {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .hamburger.active .line1 {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.active .line2 {
+        opacity: 0;
+    }
+
+    .hamburger.active .line3 {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    .hamburger-line {
+        width: 25px;
+        height: 3px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.3s;
+    }
+
+    /* Responsive text adjustments */
+    @media (max-width: 640px) {
+        section[id]::before {
+            height: 80px;
+            margin-top: -80px;
+        }
+    }
     </style>
   </head>
 
@@ -46,178 +91,245 @@
 
     <!-- Navbar -->
     <header class="sticky top-0 bg-black/80 backdrop-blur-md z-50">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex flex-wrap justify-between items-center">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <a href="#">
-          <img src="logo.png" alt="ILYA Attorneys Logo" class="h-12 md:h-16 w-auto" />
+          <img src="logo.png" alt="ILYA Attorneys Logo" class="h-12 sm:h-16 w-auto" />
         </a>
-        <nav class="space-x-4 text-white font-medium text-sm md:text-base mt-4 md:mt-0 w-full md:w-auto text-center md:text-left">
-          <a href="#hero" class="block md:inline hover:text-slate-300 transition">Home</a>
-          <a href="#about" class="block md:inline hover:text-slate-300 transition">About</a>
-          <a href="#service" class="block md:inline hover:text-slate-300 transition">Service</a>
-          <a href="#blog" class="block md:inline hover:text-slate-300 transition">Blog</a>
-          <a href="#contact" class="block md:inline hover:text-slate-300 transition">Contact</a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex space-x-6 text-white font-medium">
+          <a href="#hero" class="hover:text-slate-300 transition">Home</a>
+          <a href="#about" class="hover:text-slate-300 transition">About</a>
+          <a href="#service" class="hover:text-slate-300 transition">Service</a>
+          <a href="#blog" class="hover:text-slate-300 transition">Blog</a>
+          <a href="#contact" class="hover:text-slate-300 transition">Contact</a>
+        </nav>
+
+        <!-- Mobile Hamburger -->
+        <div class="md:hidden hamburger" id="hamburger">
+          <div class="hamburger-line line1"></div>
+          <div class="hamburger-line line2"></div>
+          <div class="hamburger-line line3"></div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-slate-900 md:hidden">
+        <div class="flex justify-end p-4">
+          <button id="close-menu" class="text-white text-2xl">&times;</button>
+        </div>
+        <nav class="flex flex-col space-y-4 px-6 text-white font-medium">
+          <a href="#hero" class="hover:text-slate-300 transition py-2 border-b border-slate-700">Home</a>
+          <a href="#about" class="hover:text-slate-300 transition py-2 border-b border-slate-700">About</a>
+          <a href="#service" class="hover:text-slate-300 transition py-2 border-b border-slate-700">Service</a>
+          <a href="#blog" class="hover:text-slate-300 transition py-2 border-b border-slate-700">Blog</a>
+          <a href="#contact" class="hover:text-slate-300 transition py-2">Contact</a>
         </nav>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="bg-cover bg-center text-white h-[700px] flex items-center"
+    <section id="hero" class="bg-cover bg-center text-white h-[500px] sm:h-[600px] lg:h-[700px] flex items-center"
       style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bg.png');">
-      <div class="max-w-7xl mx-auto px-4 text-center md:text-left">
+      <div class="max-w-7xl mx-auto px-4">
         <div class="mt-4">
-          <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Membela Keadilan,<br />Menjunjung Kebenaran.
           </h1>
-          <p class="text-base md:text-xl mb-8 font-medium">
+          <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 font-medium">
             Kantor Hukum Profesional & Terpercaya Sejak 2020
           </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-4">
-            <a href="#contact" class="bg-slate-900 text-white font-semibold px-6 py-3 rounded-lg hover:bg-slate-600 transition">
+          <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+            <a href="#contact"
+              class="bg-slate-900 text-white font-semibold px-6 py-3 rounded-lg hover:bg-slate-600 transition text-center">
               Konsultasi Sekarang
             </a>
-            <a href="#service" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition">
+            <a href="#service"
+              class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition text-center">
               Pelajari Layanan Kami
             </a>
           </div>
         </div>
 
-        <div class="mt-8">
-          <div class="w-16 h-1 bg-slate-900 mb-8 mx-auto md:mx-0"></div>
-          <p class="italic text-white text-lg max-w-xl mx-auto md:mx-0">
-            “Keadilan bukan hanya hukum, tetapi prinsip yang membentuk peradaban. Kami hadir untuk memperjuangkan hak
-            Anda dengan integritas dan profesionalisme.”
+        <div class="mt-6 sm:mt-8">
+          <div class="w-16 h-1 bg-slate-900 mb-6 sm:mb-8"></div>
+          <p class="italic text-white text-sm sm:text-base lg:text-lg max-w-xl">
+            "Keadilan bukan hanya hukum, tetapi prinsip yang membentuk peradaban. Kami hadir untuk memperjuangkan hak
+            Anda dengan integritas dan profesionalisme."
           </p>
         </div>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="pt-[100px] -mt-[100px] py-20 px-4 bg-white">
-      <h2 class="text-3xl font-bold text-center text-slate-900 mb-12">About Us</h2>
-      <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div class="space-y-6 text-slate-700">
+    <section id="about" class="pt-[100px] -mt-[100px] py-12 sm:py-20 px-4 bg-white">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-12">About Us</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+        <div class="space-y-4 sm:space-y-6 text-slate-700 order-2 lg:order-1">
           <div>
-            <h3 class="text-xl font-bold text-slate-900 mb-2">Kami Hadir Untuk Membela Hak dan Keadilan Anda</h3>
-            <p>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">Kami Hadir Untuk Membela Hak dan Keadilan Anda</h3>
+            <p class="text-sm sm:text-base">
               ILYA Attorneys adalah firma hukum independen yang berdedikasi dalam memberikan solusi hukum yang berkualitas tinggi, adil, dan terpercaya.
             </p>
           </div>
           <div>
-            <h4 class="font-semibold text-slate-900 mb-1">Misi Kami</h4>
-            <ul class="list-disc list-inside space-y-1">
+            <h4 class="font-semibold text-slate-900 mb-1 text-sm sm:text-base">Misi Kami</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm sm:text-base">
               <li>Memberikan layanan hukum yang berkualitas tinggi dan berorientasi pada hasil.</li>
               <li>Menjalin hubungan jangka panjang dengan klien melalui pelayanan yang jujur dan terpercaya.</li>
               <li>Menjadi mitra strategis dalam penyelesaian masalah hukum klien.</li>
             </ul>
           </div>
           <div>
-            <h4 class="font-semibold text-slate-900 mb-1">Visi Kami</h4>
-            <p>
+            <h4 class="font-semibold text-slate-900 mb-1 text-sm sm:text-base">Visi Kami</h4>
+            <p class="text-sm sm:text-base">
               Menjadi firma hukum terpercaya di Indonesia yang menjunjung tinggi keadilan, integritas dan profesionalitas.
             </p>
           </div>
         </div>
-        <div class="flex justify-center">
-          <img src="pengacara.png" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-sm object-cover" />
+        <div class="flex justify-center order-1 lg:order-2">
+          <img src="pengacara.png" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-xs object-cover" />
         </div>
       </div>
     </section>
 
     <!-- Mengapa Memilih Kami -->
-    <section class="bg-slate-900 text-white py-20 px-4 mb-12">
-      <h2 class="text-3xl font-bold text-center mb-12">Mengapa Memilih Kami?</h2>
-      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <section class="bg-slate-900 text-white py-16 sm:py-24 lg:py-40 px-4 mb-12">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Mengapa Memilih Kami?</h2>
+      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
         <div>
-          <img src="timbangan.png" alt="Pengalaman" class="mx-auto mb-4 w-16 h-16 object-contain">
-          <h3 class="font-semibold text-lg mb-2">Pengalaman & Kredibilitas</h3>
-          <p class="text-sm">Tim profesional dengan pengalaman luas dalam berbagai bidang hukum.</p>
+          <img src="timbangan.png" alt="Pengalaman" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
+          <h3 class="font-semibold text-base sm:text-lg mb-2">Pengalaman & Kredibilitas</h3>
+          <p class="text-xs sm:text-sm">Tim profesional dengan pengalaman luas dalam berbagai bidang hukum.</p>
         </div>
         <div>
-          <img src="user.png" alt="Profesional" class="mx-auto mb-4 w-16 h-16 object-contain">
-          <h3 class="font-semibold text-lg mb-2">Tim Profesional</h3>
-          <p class="text-sm">Pengacara berdedikasi yang memahami kebutuhan hukum Anda.</p>
+          <img src="user.png" alt="Profesional" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
+          <h3 class="font-semibold text-base sm:text-lg mb-2">Tim Profesional</h3>
+          <p class="text-xs sm:text-sm">Pengacara berdedikasi yang memahami kebutuhan hukum Anda.</p>
         </div>
         <div>
-          <img src="gembok.png" alt="Kerahasiaan" class="mx-auto mb-4 w-16 h-16 object-contain">
-          <h3 class="font-semibold text-lg mb-2">Kerahasiaan Dijamin</h3>
-          <p class="text-sm">Kerja dengan standar etika dan kerahasiaan tinggi.</p>
+          <img src="gembok.png" alt="Kerahasiaan" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
+          <h3 class="font-semibold text-base sm:text-lg mb-2">Kerahasiaan Dijamin</h3>
+          <p class="text-xs sm:text-sm">Kerja dengan standar etika dan kerahasiaan tinggi.</p>
         </div>
         <div>
-          <img src="jam.png" alt="Respon Cepat" class="mx-auto mb-4 w-16 h-16 object-contain">
-          <h3 class="font-semibold text-lg mb-2">Respon Cepat</h3>
-          <p class="text-sm">Pelayanan cepat dan tanggap untuk setiap kebutuhan hukum Anda.</p>
+          <img src="jam.png" alt="Respon Cepat" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
+          <h3 class="font-semibold text-base sm:text-lg mb-2">Respon Cepat</h3>
+          <p class="text-xs sm:text-sm">Pelayanan cepat dan tanggap untuk setiap kebutuhan hukum Anda.</p>
         </div>
       </div>
     </section>
 
     <!-- Services -->
-    <section id="service" class="pt-[100px] -mt-[100px] py-20 px-4 bg-gray-50">
-      <h2 class="text-3xl font-bold text-center text-slate-900 mb-10">Service</h2>
-      <div class="grid gap-8 md:grid-cols-3 grid-cols-1 max-w-7xl mx-auto">
-        <div class="bg-white p-6 rounded-xl shadow">
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Hukum Perdata</h3>
-          <p class="text-slate-600">Sengketa, wanprestasi, perdata umum.</p>
+    <section id="service" class="pt-[100px] -mt-[100px] py-12 sm:py-20 px-4 bg-gray-50">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-10">Service</h2>
+      <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div class="bg-white p-4 sm:p-6 rounded-xl shadow">
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Hukum Perdata</h3>
+          <p class="text-slate-600 text-sm sm:text-base">Sengketa, wanprestasi, perdata umum.</p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow">
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Hukum Pidana</h3>
-          <p class="text-slate-600">Pendampingan dalam proses penyidikan dan persidangan.</p>
+        <div class="bg-white p-4 sm:p-6 rounded-xl shadow">
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Hukum Pidana</h3>
+          <p class="text-slate-600 text-sm sm:text-base">Pendampingan dalam proses penyidikan dan persidangan.</p>
         </div>
-        <div class="bg-white p-6 rounded-xl shadow">
-          <h3 class="text-xl font-semibold text-slate-900 mb-2">Hukum Keluarga</h3>
-          <p class="text-slate-600">Perceraian, hak asuh, warisan, dan lainnya.</p>
+        <div class="bg-white p-4 sm:p-6 rounded-xl shadow md:col-span-2 lg:col-span-1">
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Hukum Keluarga</h3>
+          <p class="text-slate-600 text-sm sm:text-base">Perceraian, hak asuh, warisan, dan lainnya.</p>
         </div>
       </div>
     </section>
 
     <!-- Blog -->
-    <section id="blog" class="pt-[100px] -mt-[100px] py-20 px-4">
-      <h2 class="text-3xl font-bold text-center text-slate-900 mt-10 mb-6">Blog</h2>
-      <div class="grid gap-8 md:grid-cols-3 grid-cols-1 max-w-7xl mx-auto">
-        <div class="bg-gray-100 p-6 rounded-xl shadow text-left">
-          <img src="panduan.png" alt="Panduan Hukum Praktis" class="w-full h-40 object-cover rounded mb-4">
-          <h3 class="text-xl font-semibold text-slate-900 mb-1">Panduan Hukum Praktis</h3>
-          <p class="text-sm text-slate-600 mb-3">20 April 2025</p>
-          <a href="#" class="text-slate-900 font-semibold underline">Baca Selengkapnya</a>
+    <section id="blog" class="pt-[100px] -mt-[100px] py-16 sm:py-24 lg:py-40 px-4">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mt-6 sm:mt-10 mb-4 sm:mb-6">Blog</h2>
+      <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow text-left">
+          <img src="panduan.png" alt="Panduan Hukum Praktis" class="w-full h-32 sm:h-40 object-cover rounded mb-4">
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Panduan Hukum Praktis</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
+          <a href="#" class="text-slate-900 font-semibold underline text-sm sm:text-base">Baca Selengkapnya</a>
         </div>
-        <div class="bg-gray-100 p-6 rounded-xl shadow text-left">
-          <img src="tips.png" alt="Tips Hukum Sehari–hari" class="w-full h-40 object-cover rounded mb-4">
-          <h3 class="text-xl font-semibold text-slate-900 mb-1">Tips Hukum Sehari–hari</h3>
-          <p class="text-sm text-slate-600 mb-3">20 April 2025</p>
-          <a href="#" class="text-slate-900 font-semibold underline">Baca Selengkapnya</a>
+        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow text-left">
+          <img src="tips.png" alt="Tips Hukum Sehari–hari" class="w-full h-32 sm:h-40 object-cover rounded mb-4">
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Tips Hukum Sehari–hari</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
+          <a href="#" class="text-slate-900 font-semibold underline text-sm sm:text-base">Baca Selengkapnya</a>
         </div>
-        <div class="bg-gray-100 p-6 rounded-xl shadow text-left">
-          <img src="analisis.png" alt="Analisis Kasus Aktual" class="w-full h-40 object-cover rounded mb-4">
-          <h3 class="text-xl font-semibold text-slate-900 mb-1">Analisis Kasus Aktual (Legal Insight)</h3>
-          <p class="text-sm text-slate-600 mb-3">20 April 2025</p>
-          <a href="#" class="text-slate-900 font-semibold underline">Baca Selengkapnya</a>
+        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow text-left md:col-span-2 lg:col-span-1">
+          <img src="analisis.png" alt="Analisis Kasus Aktual" class="w-full h-32 sm:h-40 object-cover rounded mb-4">
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Analisis Kasus Aktual (Legal Insight)</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
+          <a href="#" class="text-slate-900 font-semibold underline text-sm sm:text-base">Baca Selengkapnya</a>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="pt-[100px] -mt-[100px] bg-slate-900 text-white py-12 px-6">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-10 md:space-y-0">
+    <footer id="contact" class="pt-[100px] -mt-[100px] bg-slate-900 text-white py-8 sm:py-12 px-6">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 sm:space-y-10 md:space-y-0">
         <div>
-          <h3 class="text-xl font-bold mb-2">ILYA Attorneys</h3>
-          <p class="text-sm leading-relaxed max-w-sm">
+          <h3 class="text-lg sm:text-xl font-bold mb-2">ILYA Attorneys</h3>
+          <p class="text-xs sm:text-sm leading-relaxed max-w-sm">
             Kantor Hukum Profesional & Terpercaya.<br />
             Menjunjung tinggi integritas, keadilan, dan kerahasiaan klien.
           </p>
         </div>
-        <div class="flex flex-col items-start md:items-end space-y-2">
+        <div class="flex flex-col items-start md:items-end space-y-2 w-full md:w-auto">
           <div class="flex space-x-2">
-            <a href="#"><img src="yt.png" alt="YouTube" class="w-8 h-8"></a>
-            <a href="#"><img src="ig.png" alt="Instagram" class="w-8 h-8"></a>
-            <a href="#"><img src="fb.png" alt="Facebook" class="w-8 h-8"></a>
-            <a href="#"><img src="wa.png" alt="WhatsApp" class="w-8 h-8"></a>
+            <a href="#"><img src="yt.png" alt="YouTube" class="w-6 h-6 sm:w-8 sm:h-8"></a>
+            <a href="#"><img src="ig.png" alt="Instagram" class="w-6 h-6 sm:w-8 sm:h-8"></a>
+            <a href="#"><img src="fb.png" alt="Facebook" class="w-6 h-6 sm:w-8 sm:h-8"></a>
+            <a href="#"><img src="wa.png" alt="WhatsApp" class="w-6 h-6 sm:w-8 sm:h-8"></a>
           </div>
-          <p class="text-sm text-right">
+          <p class="text-xs sm:text-sm text-left md:text-right">
             Dibuat Oleh Muhammad Ilya Hamzah<br />
             Menggunakan Figma@2025
           </p>
         </div>
       </div>
     </footer>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+
+    <script>
+      // Mobile menu functionality
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const closeMenu = document.getElementById('close-menu');
+      const menuOverlay = document.getElementById('menu-overlay');
+      const menuLinks = document.querySelectorAll('#mobile-menu a');
+
+      function openMenu() {
+        mobileMenu.classList.add('active');
+        hamburger.classList.add('active');
+        menuOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenuFunc() {
+        mobileMenu.classList.remove('active');
+        hamburger.classList.remove('active');
+        menuOverlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+      }
+
+      hamburger.addEventListener('click', openMenu);
+      closeMenu.addEventListener('click', closeMenuFunc);
+      menuOverlay.addEventListener('click', closeMenuFunc);
+
+      // Close menu when clicking on menu links
+      menuLinks.forEach(link => {
+        link.addEventListener('click', closeMenuFunc);
+      });
+
+      // Close menu on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMenuFunc();
+        }
+      });
+    </script>
 
   </body>
 </html>
