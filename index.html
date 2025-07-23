@@ -178,7 +178,7 @@
         position: fixed;
         bottom: 20px;
         right: 20px;
-        z-index: 50;
+        z-index: 9999;
         background: #25D366;
         color: white;
         width: 60px;
@@ -191,11 +191,16 @@
         cursor: pointer;
         transition: all 0.3s ease;
         animation: pulse 2s infinite;
-        text-decoration: none;
-        
-        /* Memastikan button selalu terlihat di atas elemen lain */
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        pointer-events: auto;
+    }
+
+    @media (max-width: 640px) {
+        .floating-whatsapp {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            right: 10px;
+        }
     }
 
     .floating-whatsapp:hover {
@@ -330,7 +335,7 @@
 
     <!-- Floating WhatsApp -->
     <a href="https://wa.me/6281211391835?text=Halo,%20saya%20ingin%20konsultasi%20hukum" target="_blank" class="floating-whatsapp" title="WhatsApp Chat">
-      <i class="ri-whatsapp-line"></i>
+      <i class="ri-whatsapp-line text-4xl"></i>
     </a>
 
     <!-- Navbar -->
