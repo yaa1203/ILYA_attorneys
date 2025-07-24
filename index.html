@@ -23,7 +23,7 @@
 
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
 
@@ -34,31 +34,47 @@
 
     body {
         font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        position: relative;
     }
 
-    /* Menambahkan offset agar judul tidak tertutup navbar */
+    /* Section offset untuk navbar sticky */
     section[id]::before {
         content: "";
         display: block;
-        height: 120px; /* Sebelumnya 80px */
-        margin-top: -120px;
+        height: 100px;
+        margin-top: -100px;
         visibility: hidden;
     }
 
-    /* Mobile menu styles */
+    @media (max-width: 768px) {
+        section[id]::before {
+            height: 80px;
+            margin-top: -80px;
+        }
+    }
+
+    /* Mobile menu styles - Improved */
     #mobile-menu {
         transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        backdrop-filter: blur(10px);
     }
 
     #mobile-menu.active {
         transform: translateX(0);
     }
 
-    /* Hamburger animation */
+    /* Hamburger animation - Enhanced */
     .hamburger {
         cursor: pointer;
         transition: all 0.3s ease;
+        padding: 8px;
+        border-radius: 4px;
+    }
+
+    .hamburger:hover {
+        background-color: rgba(255, 255, 255, 0.1);
     }
 
     .hamburger.active .line1 {
@@ -79,23 +95,31 @@
         background-color: white;
         margin: 3px 0;
         transition: 0.3s;
+        border-radius: 2px;
     }
 
-    /* Contact Menu Styles */
+    /* Contact Menu Styles - Mobile Optimized */
     .contact-menu {
         position: fixed;
-        left: 20px;
+        left: 16px;
         top: 50%;
         transform: translateY(-50%);
         z-index: 40;
         transition: all 0.3s ease;
     }
 
+    @media (max-width: 640px) {
+        .contact-menu {
+            left: 12px;
+            top: 40%;
+        }
+    }
+
     .contact-menu-toggle {
         background: linear-gradient(135deg, #1e293b, #334155);
         color: white;
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -107,50 +131,86 @@
         overflow: hidden;
     }
 
+    @media (max-width: 640px) {
+        .contact-menu-toggle {
+            width: 44px;
+            height: 44px;
+        }
+    }
+
     .contact-menu-toggle:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         border-color: #64748b;
     }
 
-    .contact-menu-toggle img {
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-        border-radius: 50%;
+    .contact-menu-toggle i {
+        font-size: 20px;
+    }
+
+    @media (max-width: 640px) {
+        .contact-menu-toggle i {
+            font-size: 18px;
+        }
     }
 
     .contact-menu-items {
         position: absolute;
-        left: 60px;
+        left: 56px;
         top: 50%;
         transform: translateY(-50%);
         background: white;
         border-radius: 12px;
         box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-        padding: 15px;
-        min-width: 250px;
+        padding: 12px;
+        min-width: 240px;
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
         border: 1px solid #e2e8f0;
+        max-width: calc(100vw - 80px);
+    }
+
+    @media (max-width: 640px) {
+        .contact-menu-items {
+            left: 52px;
+            min-width: 200px;
+            padding: 10px;
+            font-size: 14px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-menu-items {
+            left: 48px;
+            min-width: 180px;
+            font-size: 13px;
+        }
     }
 
     .contact-menu.active .contact-menu-items {
         opacity: 1;
         visibility: visible;
-        transform: translateY(-50%) translateX(10px);
+        transform: translateY(-50%) translateX(8px);
     }
 
     .contact-item {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 10px;
+        gap: 10px;
+        padding: 8px;
         border-radius: 8px;
         transition: all 0.2s ease;
         text-decoration: none;
         color: #334155;
-        margin-bottom: 8px;
+        margin-bottom: 6px;
+    }
+
+    @media (max-width: 640px) {
+        .contact-item {
+            gap: 8px;
+            padding: 6px;
+            margin-bottom: 4px;
+        }
     }
 
     .contact-item:last-child {
@@ -159,21 +219,30 @@
 
     .contact-item:hover {
         background: #f1f5f9;
-        transform: translateX(5px);
+        transform: translateX(3px);
     }
 
     .contact-icon {
-        width: 35px;
-        height: 35px;
+        width: 32px;
+        height: 32px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         color: white;
-        font-size: 16px;
+        font-size: 14px;
+        flex-shrink: 0;
     }
 
-    /* Floating WhatsApp - Improved Responsive Design */
+    @media (max-width: 640px) {
+        .contact-icon {
+            width: 28px;
+            height: 28px;
+            font-size: 12px;
+        }
+    }
+
+    /* Floating WhatsApp - Perfect Mobile Responsive */
     .floating-whatsapp {
         position: fixed;
         bottom: 20px;
@@ -181,8 +250,8 @@
         z-index: 9999;
         background: #25D366;
         color: white;
-        width: 60px;
-        height: 60px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -191,22 +260,46 @@
         cursor: pointer;
         transition: all 0.3s ease;
         animation: pulse 2s infinite;
-        pointer-events: auto;
+        text-decoration: none;
+        font-size: 24px;
     }
 
+    /* Mobile specific adjustments */
     @media (max-width: 640px) {
         .floating-whatsapp {
-            width: 50px;
-            height: 50px;
-            bottom: 10px;
-            right: 10px;
+            width: 52px;
+            height: 52px;
+            bottom: 16px;
+            right: 16px;
+            font-size: 22px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .floating-whatsapp {
+            width: 48px;
+            height: 48px;
+            bottom: 14px;
+            right: 14px;
+            font-size: 20px;
+        }
+    }
+
+    /* Landscape mode adjustments */
+    @media (max-width: 768px) and (orientation: landscape) {
+        .floating-whatsapp {
+            bottom: 12px;
+            right: 12px;
+            width: 46px;
+            height: 46px;
+            font-size: 18px;
         }
     }
 
     .floating-whatsapp:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-        color: white; /* Memastikan warna ikon tetap putih saat hover */
+        color: white;
     }
 
     .floating-whatsapp:active {
@@ -225,62 +318,116 @@
         }
     }
 
-    /* Responsive text adjustments */
+    /* Hero Section Responsive Improvements */
     @media (max-width: 640px) {
-        section[id]::before {
-            height: 80px;
-            margin-top: -80px;
+        .hero-content {
+            padding-top: 2rem;
+            text-align: center;
         }
         
-        .contact-menu {
-            left: 10px;
+        .hero-buttons {
+            flex-direction: column;
+            gap: 0.75rem;
         }
         
-        .contact-menu-items {
-            min-width: 220px;
-            left: 50px;
-        }
-        
-        /* Improved mobile positioning for WhatsApp button */
-        .floating-whatsapp {
-            width: 56px;
-            height: 56px;
-            bottom: 16px;
-            right: 16px;
-            font-size: 24px;
+        .hero-buttons a {
+            width: 100%;
+            max-width: 280px;
+            margin: 0 auto;
         }
     }
 
-    /* Extra small screens */
+    /* Card hover effects for mobile */
+    @media (max-width: 768px) {
+        .service-card, .blog-card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .service-card:active, .blog-card:active {
+            transform: scale(0.98);
+        }
+    }
+
+    /* Improved spacing for mobile */
+    @media (max-width: 640px) {
+        .section-padding {
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+        
+        .container-padding {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+    }
+
+    /* Better text sizing for mobile */
     @media (max-width: 480px) {
-        .floating-whatsapp {
-            width: 52px;
-            height: 52px;
-            bottom: 14px;
-            right: 14px;
-            font-size: 22px;
-        }
-    }
-
-    /* Landscape mode on mobile */
-    @media (max-width: 768px) and (orientation: landscape) {
-        .floating-whatsapp {
-            bottom: 12px;
-            right: 12px;
-            width: 50px;
-            height: 50px;
-            font-size: 20px;
-        }
-    }
-
-    /* Ensure WhatsApp button doesn't interfere with other elements */
-    @media (max-width: 640px) {
-        body {
-            padding-bottom: 80px; /* Add some bottom padding to prevent content overlap */
+        .mobile-text-adjust h1 {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
         }
         
-        footer {
-            margin-bottom: 0; /* Remove any bottom margin from footer */
+        .mobile-text-adjust h2 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+        
+        .mobile-text-adjust h3 {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    /* Mobile grid improvements */
+    @media (max-width: 640px) {
+        .mobile-grid-1 {
+            grid-template-columns: 1fr;
+        }
+        
+        .mobile-grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* Footer social icons mobile */
+    @media (max-width: 640px) {
+        .social-icons {
+            justify-content: center;
+            gap: 1.5rem;
+        }
+        
+        .social-icons a {
+            font-size: 2rem;
+        }
+    }
+
+    /* Menu overlay improvements */
+    .menu-overlay {
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+    }
+
+    /* Better mobile navigation */
+    @media (max-width: 768px) {
+        .mobile-nav-item {
+            font-size: 1.125rem;
+            padding: 1rem 0;
+        }
+    }
+
+    /* Safe area adjustments for modern phones */
+    @supports (padding: max(0px)) {
+        .floating-whatsapp {
+            bottom: max(20px, env(safe-area-inset-bottom));
+            right: max(20px, env(safe-area-inset-right));
+        }
+        
+        @media (max-width: 640px) {
+            .floating-whatsapp {
+                bottom: max(16px, env(safe-area-inset-bottom));
+                right: max(16px, env(safe-area-inset-right));
+            }
         }
     }
     </style>
@@ -291,10 +438,10 @@
     <!-- Contact Menu -->
     <div class="contact-menu" id="contact-menu">
       <div class="contact-menu-toggle" id="contact-toggle">
-        <i class="ri-global-line text-3xl"></i>
+        <i class="ri-global-line"></i>
       </div>
       <div class="contact-menu-items" id="contact-items">
-        <a href="tel:+6281234567890" class="contact-item">
+        <a href="tel:+6281211391835" class="contact-item">
           <div class="contact-icon" style="background: #10b981;">
             <span class="typcn typcn-phone"></span> 
           </div>
@@ -303,7 +450,7 @@
             <div class="text-xs text-gray-600">+62 812-1139-1835</div>
           </div>
         </a>
-        <a href="mailto:info@ilyaattorneys.com" class="contact-item">
+        <a href="mailto:ilyahamzah.wan@gmail.com" class="contact-item">
           <div class="contact-icon" style="background: #3b82f6;">
             <i class="ri-mail-line"></i>
           </div>
@@ -335,23 +482,23 @@
 
     <!-- Floating WhatsApp -->
     <a href="https://wa.me/6281211391835?text=Halo,%20saya%20ingin%20konsultasi%20hukum" target="_blank" class="floating-whatsapp" title="WhatsApp Chat">
-      <i class="ri-whatsapp-line text-4xl"></i>
+      <i class="ri-whatsapp-line"></i>
     </a>
 
     <!-- Navbar -->
-    <header class="sticky top-0 bg-black/80 backdrop-blur-md z-50">
-      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <a href="#">
-          <img src="logo.png" alt="ILYA Attorneys Logo" class="h-12 sm:h-16 w-auto" />
+    <header class="sticky top-0 bg-black/90 backdrop-blur-md z-50 border-b border-gray-800/20">
+      <div class="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex justify-between items-center">
+        <a href="#" class="flex-shrink-0">
+          <img src="logo.png" alt="ILYA Attorneys Logo" class="h-10 sm:h-12 w-auto" />
         </a>
         
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-6 text-white font-medium">
-          <a href="#hero" class="hover:text-slate-300 transition">Home</a>
-          <a href="#about" class="hover:text-slate-300 transition">About</a>
-          <a href="#service" class="hover:text-slate-300 transition">Service</a>
-          <a href="#blog" class="hover:text-slate-300 transition">Blog</a>
-          <a href="#contact" class="hover:text-slate-300 transition">Contact</a>
+        <nav class="hidden md:flex space-x-8 text-white font-medium">
+          <a href="#hero" class="hover:text-slate-300 transition-colors duration-200">Home</a>
+          <a href="#about" class="hover:text-slate-300 transition-colors duration-200">About</a>
+          <a href="#service" class="hover:text-slate-300 transition-colors duration-200">Service</a>
+          <a href="#blog" class="hover:text-slate-300 transition-colors duration-200">Blog</a>
+          <a href="#contact" class="hover:text-slate-300 transition-colors duration-200">Contact</a>
         </nav>
 
         <!-- Mobile Hamburger -->
@@ -363,46 +510,47 @@
       </div>
 
       <!-- Mobile Menu -->
-      <div id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-slate-900 md:hidden">
-        <div class="flex justify-end p-4">
-          <button id="close-menu" class="text-white text-2xl">&times;</button>
+      <div id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-slate-900/95 md:hidden z-50">
+        <div class="flex justify-between items-center p-4 border-b border-slate-700">
+          <h3 class="text-white font-semibold">Menu</h3>
+          <button id="close-menu" class="text-white text-3xl hover:text-slate-300 transition-colors">&times;</button>
         </div>
-        <nav class="flex flex-col space-y-4 px-6 text-white font-medium">
-          <a href="#hero" class="hover:text-slate-300 transition py-2 border-b border-slate-700">Home</a>
-          <a href="#about" class="hover:text-slate-300 transition py-2 border-b border-slate-700">About</a>
-          <a href="#service" class="hover:text-slate-300 transition py-2 border-b border-slate-700">Service</a>
-          <a href="#blog" class="hover:text-slate-300 transition py-2 border-b border-slate-700">Blog</a>
-          <a href="#contact" class="hover:text-slate-300 transition py-2">Contact</a>
+        <nav class="flex flex-col px-6 py-4 text-white font-medium">
+          <a href="#hero" class="mobile-nav-item hover:text-slate-300 transition-colors py-4 border-b border-slate-700/50">Home</a>
+          <a href="#about" class="mobile-nav-item hover:text-slate-300 transition-colors py-4 border-b border-slate-700/50">About</a>
+          <a href="#service" class="mobile-nav-item hover:text-slate-300 transition-colors py-4 border-b border-slate-700/50">Service</a>
+          <a href="#blog" class="mobile-nav-item hover:text-slate-300 transition-colors py-4 border-b border-slate-700/50">Blog</a>
+          <a href="#contact" class="mobile-nav-item hover:text-slate-300 transition-colors py-4">Contact</a>
         </nav>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="hero" class="bg-cover bg-center text-white h-[500px] sm:h-[600px] lg:h-[700px] flex items-center"
+    <section id="hero" class="bg-cover bg-center text-white min-h-[500px] sm:min-h-[600px] lg:min-h-[700px] flex items-center relative"
       style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bg.png');">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="mt-4">
+      <div class="max-w-7xl mx-auto px-4 container-padding hero-content mobile-text-adjust">
+        <div class="max-w-4xl">
           <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Membela Keadilan,<br />Menjunjung Kebenaran.
           </h1>
-          <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 font-medium">
+          <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 font-medium max-w-2xl">
             Kantor Hukum Profesional & Terpercaya Sejak 2020
           </p>
-          <div class="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
+          <div class="flex flex-col sm:flex-row gap-4 hero-buttons">
             <a href="#contact"
-              class="bg-slate-900 text-white font-semibold px-6 py-3 rounded-lg hover:bg-slate-600 transition text-center">
+              class="bg-slate-900 text-white font-semibold px-8 py-3 rounded-lg hover:bg-slate-700 transition-colors text-center">
               Konsultasi Sekarang
             </a>
             <a href="#service"
-              class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition text-center">
+              class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-slate-900 transition-colors text-center">
               Pelajari Layanan Kami
             </a>
           </div>
         </div>
 
-        <div class="mt-6 sm:mt-8">
-          <div class="w-16 h-1 bg-slate-900 mb-6 sm:mb-8"></div>
-          <p class="italic text-white text-sm sm:text-base lg:text-lg max-w-xl">
+        <div class="mt-8 sm:mt-12 max-w-2xl">
+          <div class="w-16 h-1 bg-slate-900 mb-6 sm:mb-8 mx-auto sm:mx-0"></div>
+          <p class="italic text-white text-sm sm:text-base lg:text-lg leading-relaxed text-center sm:text-left">
             "Keadilan bukan hanya hukum, tetapi prinsip yang membentuk peradaban. Kami hadir untuk memperjuangkan hak
             Anda dengan integritas dan profesionalisme."
           </p>
@@ -411,138 +559,230 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="pt-[100px] -mt-[100px] py-12 sm:py-20 px-4 bg-white">
+    <section id="about" class="section-padding py-12 sm:py-20 px-4 bg-white mobile-text-adjust">
       <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-12">About Us</h2>
-      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-center">
+      <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         <div class="space-y-4 sm:space-y-6 text-slate-700 order-2 lg:order-1">
           <div>
-            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-2">Kami Hadir Untuk Membela Hak dan Keadilan Anda</h3>
-            <p class="text-sm sm:text-base">
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 mb-3">Kami Hadir Untuk Membela Hak dan Keadilan Anda</h3>
+            <p class="text-sm sm:text-base leading-relaxed">
               ILYA Attorneys adalah firma hukum independen yang berdedikasi dalam memberikan solusi hukum yang berkualitas tinggi, adil, dan terpercaya.
             </p>
           </div>
           <div>
-            <h4 class="font-semibold text-slate-900 mb-1 text-sm sm:text-base">Misi Kami</h4>
-            <ul class="list-disc list-inside space-y-1 text-sm sm:text-base">
+            <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Misi Kami</h4>
+            <ul class="list-disc list-inside space-y-2 text-sm sm:text-base leading-relaxed">
               <li>Memberikan layanan hukum yang berkualitas tinggi dan berorientasi pada hasil.</li>
               <li>Menjalin hubungan jangka panjang dengan klien melalui pelayanan yang jujur dan terpercaya.</li>
               <li>Menjadi mitra strategis dalam penyelesaian masalah hukum klien.</li>
             </ul>
           </div>
           <div>
-            <h4 class="font-semibold text-slate-900 mb-1 text-sm sm:text-base">Visi Kami</h4>
-            <p class="text-sm sm:text-base">
+            <h4 class="font-semibold text-slate-900 mb-2 text-sm sm:text-base">Visi Kami</h4>
+            <p class="text-sm sm:text-base leading-relaxed">
               Menjadi firma hukum terpercaya di Indonesia yang menjunjung tinggi keadilan, integritas dan profesionalitas.
             </p>
           </div>
         </div>
         <div class="flex justify-center order-1 lg:order-2">
-          <img src="pengacara.png" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-xs object-cover" />
+          <img src="pengacara.png" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-sm h-80 object-cover" />
         </div>
       </div>
     </section>
 
-    <!-- Mengapa Memilih Kami -->
-    <section class="bg-slate-900 text-white py-16 sm:py-24 lg:py-40 px-4 mb-12">
+    <!-- Why Choose Us Section -->
+    <section class="bg-slate-900 text-white section-padding py-16 sm:py-24 lg:py-32 px-4 mobile-text-adjust">
       <h2 class="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-12">Mengapa Memilih Kami?</h2>
-      <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
-        <div>
-          <img src="timbangan.png" alt="Pengalaman" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
-          <h3 class="font-semibold text-base sm:text-lg mb-2">Pengalaman & Kredibilitas</h3>
-          <p class="text-xs sm:text-sm">Tim profesional dengan pengalaman luas dalam berbagai bidang hukum.</p>
+      <div class="max-w-6xl mx-auto grid mobile-grid-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 text-center">
+        <div class="p-4">
+          <div class="w-16 h-16 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+            <i class="ri-scales-3-line text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-base sm:text-lg mb-3">Pengalaman & Kredibilitas</h3>
+          <p class="text-sm sm:text-base leading-relaxed">Tim profesional dengan pengalaman luas dalam berbagai bidang hukum.</p>
         </div>
-        <div>
-          <img src="user.png" alt="Profesional" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
-          <h3 class="font-semibold text-base sm:text-lg mb-2">Tim Profesional</h3>
-          <p class="text-xs sm:text-sm">Pengacara berdedikasi yang memahami kebutuhan hukum Anda.</p>
+        <div class="p-4">
+          <div class="w-16 h-16 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+            <i class="ri-team-line text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-base sm:text-lg mb-3">Tim Profesional</h3>
+          <p class="text-sm sm:text-base leading-relaxed">Pengacara berdedikasi yang memahami kebutuhan hukum Anda.</p>
         </div>
-        <div>
-          <img src="gembok.png" alt="Kerahasiaan" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
-          <h3 class="font-semibold text-base sm:text-lg mb-2">Kerahasiaan Dijamin</h3>
-          <p class="text-xs sm:text-sm">Kerja dengan standar etika dan kerahasiaan tinggi.</p>
+        <div class="p-4">
+          <div class="w-16 h-16 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+            <i class="ri-shield-check-line text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-base sm:text-lg mb-3">Kerahasiaan Dijamin</h3>
+          <p class="text-sm sm:text-base leading-relaxed">Kerja dengan standar etika dan kerahasiaan tinggi.</p>
         </div>
-        <div>
-          <img src="jam.png" alt="Respon Cepat" class="mx-auto mb-4 w-12 h-12 sm:w-16 sm:h-16 object-contain">
-          <h3 class="font-semibold text-base sm:text-lg mb-2">Respon Cepat</h3>
-          <p class="text-xs sm:text-sm">Pelayanan cepat dan tanggap untuk setiap kebutuhan hukum Anda.</p>
+        <div class="p-4">
+          <div class="w-16 h-16 mx-auto mb-4 bg-white/10 rounded-full flex items-center justify-center">
+            <i class="ri-time-line text-2xl"></i>
+          </div>
+          <h3 class="font-semibold text-base sm:text-lg mb-3">Respon Cepat</h3>
+          <p class="text-sm sm:text-base leading-relaxed">Pelayanan cepat dan tanggap untuk setiap kebutuhan hukum Anda.</p>
         </div>
       </div>
     </section>
 
     <!-- Services -->
-    <section id="service" class="pt-[100px] -mt-[100px] py-12 sm:py-20 px-4 bg-gray-50">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-10">Service</h2>
-      <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        <div class="bg-white p-4 sm:p-6 rounded-xl shadow">
-          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Hukum Perdata</h3>
-          <p class="text-slate-600 text-sm sm:text-base">Sengketa, wanprestasi, perdata umum.</p>
+    <section id="service" class="section-padding py-12 sm:py-20 px-4 bg-gray-50 mobile-text-adjust">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-12">Layanan Kami</h2>
+      <div class="grid gap-6 sm:gap-8 mobile-grid-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div class="service-card bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-4">
+            <i class="ri-file-text-line text-white text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-3">Hukum Perdata</h3>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Menangani sengketa perdata, wanprestasi, dan berbagai kasus hukum perdata umum dengan pendekatan profesional.</p>
         </div>
-        <div class="bg-white p-4 sm:p-6 rounded-xl shadow">
-          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Hukum Pidana</h3>
-          <p class="text-slate-600 text-sm sm:text-base">Pendampingan dalam proses penyidikan dan persidangan.</p>
+        <div class="service-card bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-4">
+            <i class="ri-shield-line text-white text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-3">Hukum Pidana</h3>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Memberikan pendampingan hukum dalam proses penyidikan, penuntutan, dan persidangan pidana.</p>
         </div>
-        <div class="bg-white p-4 sm:p-6 rounded-xl shadow md:col-span-2 lg:col-span-1">
-          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Hukum Keluarga</h3>
-          <p class="text-slate-600 text-sm sm:text-base">Perceraian, hak asuh, warisan, dan lainnya.</p>
+        <div class="service-card bg-white p-6 sm:p-8 rounded-xl shadow-md hover:shadow-lg transition-shadow sm:col-span-2 lg:col-span-1">
+          <div class="w-12 h-12 bg-slate-900 rounded-lg flex items-center justify-center mb-4">
+            <i class="ri-heart-line text-white text-xl"></i>
+          </div>
+          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-3">Hukum Keluarga</h3>
+          <p class="text-slate-600 text-sm sm:text-base leading-relaxed">Menangani kasus perceraian, hak asuh anak, pembagian warisan, dan masalah hukum keluarga lainnya.</p>
         </div>
       </div>
     </section>
 
     <!-- Blog -->
-    <section id="blog" class="pt-[100px] -mt-[100px] py-16 sm:py-20 lg:py-40 px-4 mb-8 sm:mb-12">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-12">Blog</h2>
-      <div class="grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow text-left">
-          <img src="panduan.png" alt="Panduan Hukum Praktis" class="w-full h-32 sm:h-40 object-cover rounded mb-4">
-          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Panduan Hukum Praktis</h3>
-          <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
-          <a href="#" class="text-slate-900 font-semibold underline text-sm sm:text-base">Baca Selengkapnya</a>
+    <section id="blog" class="section-padding py-16 sm:py-20 lg:py-32 px-4 mobile-text-adjust">
+      <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-12">Blog & Artikel</h2>
+      <div class="grid gap-6 sm:gap-8 mobile-grid-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
+        <div class="blog-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+          <img src="panduan.png" alt="Panduan Hukum Praktis" class="w-full h-40 sm:h-48 object-cover">
+          <div class="p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Panduan Hukum Praktis</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
+            <p class="text-sm sm:text-base text-slate-700 mb-4 leading-relaxed">Panduan lengkap mengenai hak dan kewajiban dalam berbagai situasi hukum sehari-hari.</p>
+            <a href="#" class="text-slate-900 font-semibold hover:text-slate-700 transition-colors text-sm sm:text-base inline-flex items-center">
+              Baca Selengkapnya 
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
         </div>
-        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow text-left">
-          <img src="tips.png" alt="Tips Hukum Sehari–hari" class="w-full h-32 sm:h-40 object-cover rounded mb-4">
-          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Tips Hukum Sehari–hari</h3>
-          <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
-          <a href="#" class="text-slate-900 font-semibold underline text-sm sm:text-base">Baca Selengkapnya</a>
+        <div class="blog-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
+          <img src="tips.png" alt="Tips Hukum Sehari–hari" class="w-full h-40 sm:h-48 object-cover">
+          <div class="p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Tips Hukum Sehari–hari</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-3">18 April 2025</p>
+            <p class="text-sm sm:text-base text-slate-700 mb-4 leading-relaxed">Kiat-kiat praktis untuk menghindari masalah hukum dalam kehidupan sehari-hari.</p>
+            <a href="#" class="text-slate-900 font-semibold hover:text-slate-700 transition-colors text-sm sm:text-base inline-flex items-center">
+              Baca Selengkapnya 
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
         </div>
-        <div class="bg-gray-100 p-4 sm:p-6 rounded-xl shadow text-left md:col-span-2 lg:col-span-1">
-          <img src="analisis.png" alt="Analisis Kasus Aktual" class="w-full h-32 sm:h-40 object-cover rounded mb-4">
-          <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-1">Analisis Kasus Aktual (Legal Insight)</h3>
-          <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
-          <a href="#" class="text-slate-900 font-semibold underline text-sm sm:text-base">Baca Selengkapnya</a>
+        <div class="blog-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden sm:col-span-2 lg:col-span-1">
+          <img src="analisis.png" alt="Analisis Kasus Aktual" class="w-full h-40 sm:h-48 object-cover">
+          <div class="p-4 sm:p-6">
+            <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Analisis Kasus Aktual</h3>
+            <p class="text-xs sm:text-sm text-slate-600 mb-3">15 April 2025</p>
+            <p class="text-sm sm:text-base text-slate-700 mb-4 leading-relaxed">Pembahasan mendalam tentang kasus-kasus hukum terkini dan implikasinya.</p>
+            <a href="#" class="text-slate-900 font-semibold hover:text-slate-700 transition-colors text-sm sm:text-base inline-flex items-center">
+              Baca Selengkapnya 
+              <i class="ri-arrow-right-line ml-1"></i>
+            </a>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact" class="pt-[100px] -mt-[100px] bg-slate-900 text-white py-8 sm:py-12 px-6 mt-0">
-      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 sm:space-y-10 md:space-y-0">
-        <div>
-          <h3 class="text-lg sm:text-xl font-bold mb-2">ILYA Attorneys</h3>
-          <p class="text-xs sm:text-sm leading-relaxed max-w-sm">
-            Kantor Hukum Profesional & Terpercaya.<br />
-            Menjunjung tinggi integritas, keadilan, dan kerahasiaan klien.
-          </p>
-        </div>
-        <div class="flex flex-col items-start md:items-end space-y-2 w-full md:w-auto">
-          <div class="flex space-x-3">
-            <a href="#"><i class="ri-youtube-line text-4xl"></i></a>
-            <a href="#"><i class="ri-instagram-line text-4xl"></i></a>
-            <a href="#"><i class="ri-facebook-line text-4xl"></i></a>
-            <a href="#"><i class="ri-whatsapp-line text-4xl"></i></a>
+    <footer id="contact" class="bg-slate-900 text-white py-12 sm:py-16 px-4 mobile-text-adjust">
+      <div class="max-w-7xl mx-auto">
+        <!-- Main Footer Content -->
+        <div class="grid mobile-grid-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-12 mb-12">
+          <!-- Company Info -->
+          <div class="lg:col-span-2">
+            <div class="mb-6">
+              <img src="logo.png" alt="ILYA Attorneys Logo" class="h-12 w-auto mb-4" />
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-4">ILYA Attorneys</h3>
+            <p class="text-sm sm:text-base leading-relaxed text-gray-300 mb-6 max-w-md">
+              Kantor Hukum Profesional & Terpercaya.<br />
+              Menjunjung tinggi integritas, keadilan, dan kerahasiaan klien sejak 2020.
+            </p>
+            <div class="flex social-icons space-x-4">
+              <a href="#" class="text-2xl hover:text-gray-300 transition-colors" title="YouTube">
+                <i class="ri-youtube-line"></i>
+              </a>
+              <a href="#" class="text-2xl hover:text-gray-300 transition-colors" title="Instagram">
+                <i class="ri-instagram-line"></i>
+              </a>
+              <a href="#" class="text-2xl hover:text-gray-300 transition-colors" title="Facebook">
+                <i class="ri-facebook-line"></i>
+              </a>
+              <a href="https://wa.me/6281211391835" class="text-2xl hover:text-gray-300 transition-colors" title="WhatsApp">
+                <i class="ri-whatsapp-line"></i>
+              </a>
+            </div>
           </div>
-          <p class="text-xs sm:text-sm text-left md:text-right">
-            Dibuat Oleh Muhammad Ilya Hamzah<br />
-            Menggunakan Figma@2025
-          </p>
+
+          <!-- Quick Links -->
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Navigasi</h4>
+            <ul class="space-y-3">
+              <li><a href="#hero" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Home</a></li>
+              <li><a href="#about" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">About</a></li>
+              <li><a href="#service" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Service</a></li>
+              <li><a href="#blog" class="text-gray-300 hover:text-white transition-colors text-sm sm:text-base">Blog</a></li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h4 class="font-semibold text-lg mb-4">Kontak</h4>
+            <div class="space-y-3">
+              <div class="flex items-start space-x-3">
+                <i class="ri-phone-line text-lg mt-1 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm sm:text-base text-gray-300">+62 812-1139-1835</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="ri-mail-line text-lg mt-1 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm sm:text-base text-gray-300">ilyahamzah.wan@gmail.com</p>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="ri-map-pin-line text-lg mt-1 flex-shrink-0"></i>
+                <div>
+                  <p class="text-sm sm:text-base text-gray-300">Bogor, Indonesia</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-700 pt-8">
+          <div class="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
+            <p class="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+              © 2025 ILYA Attorneys. All rights reserved.
+            </p>
+            <p class="text-xs sm:text-sm text-gray-400 text-center sm:text-right">
+              Dibuat dengan Figma oleh Muhammad Ilya Hamzah
+            </p>
+          </div>
         </div>
       </div>
     </footer>
 
     <!-- Mobile Menu Overlay -->
-    <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+    <div id="menu-overlay" class="menu-overlay fixed inset-0 bg-black/50 z-40 hidden md:hidden"></div>
 
     <script>
-      // Mobile menu functionality
+      // Mobile menu functionality - Enhanced
       const hamburger = document.getElementById('hamburger');
       const mobileMenu = document.getElementById('mobile-menu');
       const closeMenu = document.getElementById('close-menu');
@@ -579,7 +819,7 @@
         }
       });
 
-      // Contact menu functionality
+      // Contact menu functionality - Enhanced
       const contactMenu = document.getElementById('contact-menu');
       const contactToggle = document.getElementById('contact-toggle');
       const contactItems = document.getElementById('contact-items');
@@ -599,6 +839,95 @@
       // Prevent contact menu from closing when clicking inside
       contactItems.addEventListener('click', (e) => {
         e.stopPropagation();
+      });
+
+      // Smooth scrolling enhancement
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+            window.scrollTo({
+              top: offsetTop,
+              behavior: 'smooth'
+            });
+          }
+        });
+      });
+
+      // Add loading state for better UX
+      window.addEventListener('load', () => {
+        document.body.classList.add('loaded');
+      });
+
+      // Optimize scroll performance
+      let ticking = false;
+      function updateScrollPosition() {
+        // Add scroll-based interactions here if needed
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(updateScrollPosition);
+          ticking = true;
+        }
+      });
+
+      // Touch event optimization for mobile
+      let touchStartY = 0;
+      let touchEndY = 0;
+
+      document.addEventListener('touchstart', e => {
+        touchStartY = e.changedTouches[0].screenY;
+      });
+
+      document.addEventListener('touchend', e => {
+        touchEndY = e.changedTouches[0].screenY;
+        handleSwipe();
+      });
+
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        const swipeDistance = touchStartY - touchEndY;
+        
+        // Close mobile menu on swipe up (if menu is open)
+        if (swipeDistance > swipeThreshold && mobileMenu.classList.contains('active')) {
+          closeMenuFunc();
+        }
+      }
+
+      // Improve focus management for accessibility
+      const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+      function trapFocus(element) {
+        const focusableContent = element.querySelectorAll(focusableElements);
+        const firstFocusableElement = focusableContent[0];
+        const lastFocusableElement = focusableContent[focusableContent.length - 1];
+
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Tab') {
+            if (e.shiftKey) {
+              if (document.activeElement === firstFocusableElement) {
+                lastFocusableElement.focus();
+                e.preventDefault();
+              }
+            } else {
+              if (document.activeElement === lastFocusableElement) {
+                firstFocusableElement.focus();
+                e.preventDefault();
+              }
+            }
+          }
+        });
+      }
+
+      // Apply focus trap to mobile menu when open
+      hamburger.addEventListener('click', () => {
+        if (mobileMenu.classList.contains('active')) {
+          trapFocus(mobileMenu);
+        }
       });
     </script>
 
