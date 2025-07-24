@@ -245,148 +245,76 @@
     /* Floating WhatsApp - Perfect Mobile Responsive */
     .floating-whatsapp {
         position: fixed;
-        bottom: 24px;
-        right: 24px;
-        z-index: 99999;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
         background: #25D366;
-        color: white !important;
-        width: 60px;
-        height: 60px;
+        color: white;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
-        display: flex !important;
+        display: flex;
         align-items: center;
         justify-content: center;
-        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
         cursor: pointer;
         transition: all 0.3s ease;
         animation: pulse 2s infinite;
         text-decoration: none;
-        font-size: 28px;
-        border: 3px solid rgba(255, 255, 255, 0.2);
+        font-size: 24px;
     }
 
     /* Mobile specific adjustments */
     @media (max-width: 640px) {
         .floating-whatsapp {
-            width: 58px;
-            height: 58px;
-            bottom: 20px;
-            right: 20px;
-            font-size: 26px;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .floating-whatsapp {
-            width: 56px;
-            height: 56px;
-            bottom: 18px;
-            right: 18px;
-            font-size: 24px;
-            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.7);
-        }
-    }
-
-    /* Extra small screens */
-    @media (max-width: 360px) {
-        .floating-whatsapp {
-            width: 54px;
-            height: 54px;
+            width: 52px;
+            height: 52px;
             bottom: 16px;
             right: 16px;
             font-size: 22px;
         }
     }
 
-    /* Landscape mode adjustments */
-    @media (max-width: 768px) and (orientation: landscape) {
+    @media (max-width: 480px) {
         .floating-whatsapp {
-            bottom: 15px;
-            right: 15px;
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
+            bottom: 14px;
+            right: 14px;
             font-size: 20px;
         }
     }
 
-    /* High DPI screens */
-    @media (-webkit-min-device-pixel-ratio: 2) {
+    /* Landscape mode adjustments */
+    @media (max-width: 768px) and (orientation: landscape) {
         .floating-whatsapp {
-            border-width: 2px;
+            bottom: 12px;
+            right: 12px;
+            width: 46px;
+            height: 46px;
+            font-size: 18px;
         }
     }
 
     .floating-whatsapp:hover {
-        transform: scale(1.1);
-        box-shadow: 0 8px 25px rgba(37, 211, 102, 0.8);
-        color: white !important;
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+        color: white;
     }
 
     .floating-whatsapp:active {
         transform: scale(0.95);
     }
 
-    /* Ensure WhatsApp icon is always visible */
-    .floating-whatsapp i {
-        color: white !important;
-        font-weight: bold;
-        display: block !important;
-    }
-
     @keyframes pulse {
         0% {
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
         }
         50% {
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5), 0 0 0 15px rgba(37, 211, 102, 0.1);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4), 0 0 0 10px rgba(37, 211, 102, 0.1);
         }
         100% {
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-        }
-    }
-
-    /* Mobile pulse animation adjustment */
-    @media (max-width: 640px) {
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
-            }
-            50% {
-                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6), 0 0 0 12px rgba(37, 211, 102, 0.15);
-            }
-            100% {
-                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.6);
-            }
-        }
-    }
-
-    /* Ensure button appears above all other elements */
-    .floating-whatsapp {
-        pointer-events: auto !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-
-    /* Safe area adjustments for modern phones with notches */
-    @supports (padding: max(0px)) {
-        .floating-whatsapp {
-            bottom: max(24px, calc(env(safe-area-inset-bottom) + 24px));
-            right: max(24px, calc(env(safe-area-inset-right) + 24px));
-        }
-        
-        @media (max-width: 640px) {
-            .floating-whatsapp {
-                bottom: max(20px, calc(env(safe-area-inset-bottom) + 20px));
-                right: max(20px, calc(env(safe-area-inset-right) + 20px));
-            }
-        }
-
-        @media (max-width: 480px) {
-            .floating-whatsapp {
-                bottom: max(18px, calc(env(safe-area-inset-bottom) + 18px));
-                right: max(18px, calc(env(safe-area-inset-right) + 18px));
-            }
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
         }
     }
 
@@ -561,7 +489,7 @@
     <header class="sticky top-0 bg-black/90 backdrop-blur-md z-50 border-b border-gray-800/20">
       <div class="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex justify-between items-center">
         <a href="#" class="flex-shrink-0">
-          <img src="https://via.placeholder.com/120x48/1e293b/ffffff?text=ILYA" alt="ILYA Attorneys Logo" class="h-10 sm:h-12 w-auto" />
+          <img src="logo.png" alt="ILYA Attorneys Logo" class="h-10 sm:h-12 w-auto" />
         </a>
         
         <!-- Desktop Navigation -->
@@ -599,7 +527,7 @@
 
     <!-- Hero Section -->
     <section id="hero" class="bg-cover bg-center text-white min-h-[500px] sm:min-h-[600px] lg:min-h-[700px] flex items-center relative"
-      style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
+      style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('bg.png');">
       <div class="max-w-7xl mx-auto px-4 container-padding hero-content mobile-text-adjust">
         <div class="max-w-4xl">
           <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
@@ -657,7 +585,7 @@
           </div>
         </div>
         <div class="flex justify-center order-1 lg:order-2">
-          <img src="https://images.unsplash.com/photo-1556157382-97eda2d62296?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-sm h-80 object-cover" />
+          <img src="pengacara.png" alt="Foto Pengacara" class="rounded-lg shadow-lg w-full max-w-sm h-80 object-cover" />
         </div>
       </div>
     </section>
@@ -730,7 +658,7 @@
       <h2 class="text-2xl sm:text-3xl font-bold text-center text-slate-900 mb-8 sm:mb-12">Blog & Artikel</h2>
       <div class="grid gap-6 sm:gap-8 mobile-grid-1 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         <div class="blog-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1589994965851-a8f479c573a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Panduan Hukum Praktis" class="w-full h-40 sm:h-48 object-cover">
+          <img src="panduan.png" alt="Panduan Hukum Praktis" class="w-full h-40 sm:h-48 object-cover">
           <div class="p-4 sm:p-6">
             <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Panduan Hukum Praktis</h3>
             <p class="text-xs sm:text-sm text-slate-600 mb-3">20 April 2025</p>
@@ -742,7 +670,7 @@
           </div>
         </div>
         <div class="blog-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tips Hukum Sehari–hari" class="w-full h-40 sm:h-48 object-cover">
+          <img src="tips.png" alt="Tips Hukum Sehari–hari" class="w-full h-40 sm:h-48 object-cover">
           <div class="p-4 sm:p-6">
             <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Tips Hukum Sehari–hari</h3>
             <p class="text-xs sm:text-sm text-slate-600 mb-3">18 April 2025</p>
@@ -754,7 +682,7 @@
           </div>
         </div>
         <div class="blog-card bg-gray-50 rounded-xl shadow-md hover:shadow-lg transition-shadow overflow-hidden sm:col-span-2 lg:col-span-1">
-          <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analisis Kasus Aktual" class="w-full h-40 sm:h-48 object-cover">
+          <img src="analisis.png" alt="Analisis Kasus Aktual" class="w-full h-40 sm:h-48 object-cover">
           <div class="p-4 sm:p-6">
             <h3 class="text-lg sm:text-xl font-semibold text-slate-900 mb-2">Analisis Kasus Aktual</h3>
             <p class="text-xs sm:text-sm text-slate-600 mb-3">15 April 2025</p>
@@ -776,7 +704,7 @@
           <!-- Company Info -->
           <div class="lg:col-span-2">
             <div class="mb-6">
-              <img src="https://via.placeholder.com/120x48/ffffff/1e293b?text=ILYA" alt="ILYA Attorneys Logo" class="h-12 w-auto mb-4" />
+              <img src="logo.png" alt="ILYA Attorneys Logo" class="h-12 w-auto mb-4" />
             </div>
             <h3 class="text-lg sm:text-xl font-bold mb-4">ILYA Attorneys</h3>
             <p class="text-sm sm:text-base leading-relaxed text-gray-300 mb-6 max-w-md">
@@ -843,7 +771,7 @@
               © 2025 ILYA Attorneys. All rights reserved.
             </p>
             <p class="text-xs sm:text-sm text-gray-400 text-center sm:text-right">
-              Dibuat dengan ❤️ oleh Muhammad Ilya Hamzah
+              Dibuat dengan Figma oleh Muhammad Ilya Hamzah
             </p>
           </div>
         </div>
